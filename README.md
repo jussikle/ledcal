@@ -120,48 +120,6 @@ The second command is also a handy way to check your iCloud login before touchin
 | Too bright at night | Lower `night_brightness` (0 turns the display off) |
 | Sports screen never appears | It's skipped when there are no games in range. Check `journalctl -u ledcal` for "sports" errors and the team id |
 
-## Building the box
-
-The goal: a clean wooden or printed box, a dark front where the pixels glow through, and one power
-cable out the back.
-
-**Parts**
-- A **5 V 4 A power supply** with a 5.5×2.1 mm barrel plug. The bonnet powers both the panel
-  *and* the Pi from its barrel jack, so this is the only cable. Don't plug in the Pi's USB-C as well.
-- A **panel-mount 5.5×2.1 mm DC socket** plus a short barrel cable, so the plug sits flush in the back
-- A **smoked/tinted acrylic sheet** (2–3 mm, about 50% light transmission) for the front
-- Optionally, **diffuser film or tracing paper** and a 3D-printed **grid** (one square cell per LED)
-- M3 screws/standoffs (the panel has M3 holes on its back), rubber feet, black paint or tape
-
-**Size it to your panel.** Check the pitch printed on the back (P2.5, P3, P4...). A 64×32 panel at
-P3 is 192×96 mm, at P4 256×128 mm, at P5 320×160 mm. Inside depth ~55–60 mm: panel ~15 mm,
-Pi + bonnet ~35 mm, plus air.
-
-**Layering, from the front:**
-1. Tinted acrylic, set in a rabbet or groove in the front frame. Black when off, LEDs shine through
-   crisply when on. This one sheet is what makes it look like a product rather than a project.
-2. (Optional) Diffuser film, then the grid pressed against the LEDs. This gives soft, square
-   "big pixel" look instead of sharp dots. Search Printables or Thingiverse for "64x32 LED matrix grid"
-   with your pitch.
-3. The panel, screwed to a frame or cleats inside the box.
-4. The Pi with the bonnet, mounted on standoffs on the panel's back or on the back cover.
-
-**Build options**
-- **Wooden box (most appliance-like):** four sides from 12–15 mm oak or walnut with mitred or box
-  joints, a routed groove for the acrylic, and a removable back panel held with magnets or screws.
-- **3D printed:** search Printables for "64x32 LED matrix case" for your pitch, or ask me to
-  design a parametric box with your exact measurements.
-- **Laser-cut:** plywood or acrylic finger-joint box from a generator like boxes.py, in black
-  acrylic or birch ply.
-
-**Details that make it feel finished**
-- Paint the inside black so no light leaks around the edges.
-- Ventilation: a row of slots low on the back and high on the back. Warm air rises out and the Pi stays
-  cool with no fan. Add stick-on heatsinks to the Pi.
-- Use a wooden or plastic box, not metal, so Wi-Fi still works.
-- Strain relief on the power cable (a cable tie inside, or the panel-mount socket).
-- Lean the box back 5–10° with angled feet; it reads better on a desk.
-- A removable back so you can reach the SD card. Everything else is done over SSH.
 
 ## Customizing
 
