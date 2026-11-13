@@ -1,0 +1,15 @@
+[Unit]
+Description=ledcal - LED matrix clock, weather and calendar
+After=network-online.target time-sync.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=__DIR__
+ExecStart=__DIR__/venv/bin/python __DIR__/ledcal.py --config __DIR__/config.toml
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

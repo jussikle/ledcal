@@ -1,0 +1,103 @@
+# ledcal settings. Copy to config.toml and fill in your details.
+# config.toml holds a password, so keep it private:  chmod 600 config.toml
+
+[location]
+# Used for the weather (Open-Meteo, free, no API key). Default: central Helsinki.
+latitude = 60.1699
+longitude = 24.9384
+timezone = "Europe/Helsinki"
+
+[icloud]
+# Your Apple ID email and an APP-SPECIFIC password (NOT your normal password).
+# Create one at https://account.apple.com -> Sign-In and Security -> App-Specific Passwords
+apple_id = ""
+app_password = ""          # looks like "abcd-efgh-ijkl-mnop"
+
+# Which calendars to show, by name as they appear on your iPhone. Empty = all of them.
+calendars = []             # e.g. ["Home", "Work"]
+
+# Optional: override a calendar's LED color (otherwise your iPhone colors are used).
+# [icloud.colors]
+# Work = "#00BFFF"
+
+# Optional extra read-only calendars by link (public iCloud calendars, holidays...).
+ics_urls = []
+
+[display]
+hardware_mapping = "adafruit-hat"   # use "adafruit-hat-pwm" if you soldered the bonnet's PWM jumper
+gpio_slowdown = 4                   # 4 suits a Pi 4. Raise to 5 if the image flickers or glitches
+brightness = 60                     # 1-100
+night_brightness = 10               # 0 turns the display off at night
+night_start = "23:00"
+night_end = "07:00"
+blink_colon = true
+rotate = 0                          # 180 if your panel is mounted upside down
+disable_hardware_pulsing = false    # set true only if you get a "snd_bcm2835" error and keep sound on
+fps = 30
+
+[screens]
+order = ["clock", "agenda", "weather", "games", "live"]   # screens with nothing to show are skipped
+clock_seconds = 12
+weather_seconds = 8
+agenda_page_seconds = 7            # per page of 3 events
+games_seconds = 8                  # the one-page games summary
+live_seconds = 8                   # big scoreboard per live game (only when one is on)
+
+[refresh]
+weather_minutes = 10
+calendar_minutes = 5
+sports_minutes = 15
+sports_live_minutes = 1    # refresh rate while one of your games is on
+
+[sports]
+# Live games always show the score. Once a game has finished, its result stays hidden
+# until this time of day (the first time it comes round after the game started).
+# "" = always show scores.
+hide_scores_until = "12:00"
+max_upcoming = 6       # next game for each team, at most this many
+days_ahead = 7
+thesportsdb_key = "123"   # free public key; replace with a supporter key if you have one
+
+# One [[sports.teams]] block per team. To add more, find ESPN ids with:
+#   venv/bin/python ledcal.py --find-team rangers --league hockey/nhl
+# ESPN leagues: hockey/nhl  basketball/nba  football/nfl  baseball/mlb  soccer/eng.1
+#               soccer/uefa.champions  soccer/esp.1  soccer/ger.1  soccer/ita.1  soccer/usa.1
+
+[[sports.teams]]          # New York Rangers
+source = "espn"
+league = "hockey/nhl"
+team = "13"
+
+[[sports.teams]]          # New York Knicks
+source = "espn"
+league = "basketball/nba"
+team = "18"
+
+[[sports.teams]]          # New York Giants
+source = "espn"
+league = "football/nfl"
+team = "19"
+
+[[sports.teams]]          # New York Yankees
+source = "espn"
+league = "baseball/mlb"
+team = "10"
+
+[[sports.teams]]          # Liverpool - Premier League
+source = "espn"
+league = "soccer/eng.1"
+team = "364"
+label = "EPL"
+
+[[sports.teams]]          # Liverpool - Champions League
+source = "espn"
+league = "soccer/uefa.champions"
+team = "364"
+label = "UCL"
+
+[[sports.teams]]          # HIFK - Liiga (TheSportsDB)
+source = "thesportsdb"
+team = "140928"
+label = "LIIGA"
+color = "#E4002B"
+short_names = { "Assat" = "ÄSS", "Ässät" = "ÄSS", "Kärpät" = "KÄR", "Vaasan Sport" = "SPO", "TPS Turku" = "TPS", "Kiekko-Espoo" = "KIE" }
