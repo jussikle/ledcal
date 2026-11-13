@@ -1,6 +1,6 @@
 # ledcal: pixel desk dashboard
 
-A clock, the weather, and today's Apple Calendar agenda on a 64×32 RGB LED matrix
+A clock, the weather, today's Apple Calendar agenda and your favorite sports team schedules on a 64×32 RGB LED matrix
 (Raspberry Pi 4 + Adafruit RGB Matrix Bonnet). It rotates through these screens:
 
 - **Clock**: date, big time, the current temperature, and your next event
